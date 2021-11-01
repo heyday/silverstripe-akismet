@@ -29,7 +29,7 @@ class AkismetTest extends FunctionalTest
         AkismetTestController::class,
     ];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         Injector::inst()->unregisterObjects(AkismetService::class);
@@ -55,7 +55,7 @@ class AkismetTest extends FunctionalTest
             'action_doSubmit' => 'Submit',
         ));
 
-        $this->assertContains('Thanks for your submission, person', $result->getBody());
+        $this->assertStringContainsString('Thanks for your submission, person', $result->getBody());
         $saved = AkismetTestSubmission::get()->last();
         $this->assertNotEmpty($saved);
         $this->assertEquals('person', $saved->Name);
@@ -76,7 +76,7 @@ class AkismetTest extends FunctionalTest
             'SilverStripe\\Akismet\\AkismetField.SPAM',
             "Your submission has been rejected because it was treated as spam."
         );
-        $this->assertContains($errorMessage, $result->getBody());
+        $this->assertStringContainsString($errorMessage, $result->getBody());
         $saved = AkismetTestSubmission::get()->last();
         $this->assertEmpty($saved);
     }
@@ -93,7 +93,7 @@ class AkismetTest extends FunctionalTest
             'action_doSubmit' => 'Submit',
         ));
 
-        $this->assertContains('Thanks for your submission, person', $result->getBody());
+        $this->assertStringContainsString('Thanks for your submission, person', $result->getBody());
         $saved = AkismetTestSubmission::get()->last();
         $this->assertNotEmpty($saved);
         $this->assertEquals('person', $saved->Name);
