@@ -68,7 +68,7 @@ class AkismetMiddleware implements HTTPMiddleware
 
         // Ensure that SiteConfig has all fields
         $objFields = $schema->databaseFields(SiteConfig::class);
-        $missingFields = array_diff_key($objFields, $dbFields);
+        $missingFields = array_diff_key($objFields ?? [], $dbFields);
         return empty($missingFields);
     }
 }
