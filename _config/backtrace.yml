@@ -1,0 +1,6 @@
+---
+Name: akismet-backtrace
+---
+SilverStripe\Dev\Backtrace:
+  ignore_function_args:
+    - ['SilverStripe\Akismet\AkismetSpamProtector', 'setApiKey']
