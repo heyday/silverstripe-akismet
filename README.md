@@ -1,9 +1,7 @@
 # Akismet Silverstripe Module
 
 [![CI](https://github.com/silverstripe/silverstripe-akismet/actions/workflows/ci.yml/badge.svg)](https://github.com/silverstripe/silverstripe-akismet/actions/workflows/ci.yml)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/silverstripe/silverstripe-akismet/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/silverstripe/silverstripe-akismet/?branch=master)
-[![codecov](https://codecov.io/gh/silverstripe/silverstripe-akismet/branch/master/graph/badge.svg)](https://codecov.io/gh/silverstripe/silverstripe-akismet)
-[![SilverStripe supported module](https://img.shields.io/badge/silverstripe-supported-0071C4.svg)](https://www.silverstripe.org/software/addons/silverstripe-commercially-supported-module-list/)
+[![Silverstripe supported module](https://img.shields.io/badge/silverstripe-supported-0071C4.svg)](https://www.silverstripe.org/software/addons/silverstripe-commercially-supported-module-list/)
 
 Simple spam filter for Silverstripe using Akismet
 
@@ -19,12 +17,12 @@ Please see [the changelog](changelog.md) for module history.
 
 ## Requirements
 
- * SilverStripe 4.0+
+ * Silverstripe 4.0+
  * Silverstripe SpamProtection module - <https://github.com/silverstripe/silverstripe-spamprotection>
  * Tijs Verkoyen's Akismet API wrapper - <https://github.com/tijsverkoyen/Akismet>
  * PHP 5.6 or higher
 
- **Note:** For a SilverStripe 3.x compatible version, please use [the 1.x release line](https://github.com/silverstripe/silverstripe-mimevalidator/tree/1.0).
+ **Note:** For a Silverstripe 3.x compatible version, please use [the 1.x release line](https://github.com/silverstripe/silverstripe-mimevalidator/tree/1.0).
 
 ## Installation Instructions
 
@@ -83,7 +81,6 @@ Please note that the API key values defined in the various ways above will be pr
 2. Values defined in configuration, whether YAML or in \_config.php files with `Config::modify()->set(...)`
 3. Values defined in the environment via .env
 
-
 ## Testing
 
 By default, spam protection is disabled for users with ADMIN priviliges. There is also an option to disable
@@ -123,7 +120,6 @@ the following to your configuration.
 
 config.yml
 
-
 ```yaml
 # Allows spam posts to be saved for review if necessary
 SilverStripe\Akismet\AkismetSpamProtector:
@@ -144,7 +140,6 @@ $form->enableSpamProtection(array(
   )
 );
 ````
-
 
 ## Important notes for those in the EU
 
