@@ -1,0 +1,5 @@
+pl:
+  SilverStripe\Akismet\AkismetField:
+    NOTIFICATION: 'Przyjmuję do wiadomości i wyrażam zgodę na przekazanie tej treści stronie trzeciej w celu automatycznego wykrywania spamu.'
+    NOTIFICATIONREQUIRED: 'Użytkownik musi wyrazić zgodę na przekazanie tej zawartości do wykrywania spamu'
+    SPAM: 'Twoje zgłoszenie zostało odrzucone, ponieważ zostało potraktowane jako spam.'
