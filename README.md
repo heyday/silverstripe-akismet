@@ -1,7 +1,8 @@
 # Akismet Silverstripe Module
 
+__NOTE__: This module is no longer commercially supported in Silverstripe CMS 5 and it does not provide a CMS5-compatible version. The parent library is outdated and there are better alternatives like [UndefinedOffset/silverstripe-nocaptcha](https://packagist.org/packages/undefinedoffset/silverstripe-nocaptcha).
+
 [![CI](https://github.com/silverstripe/silverstripe-akismet/actions/workflows/ci.yml/badge.svg)](https://github.com/silverstripe/silverstripe-akismet/actions/workflows/ci.yml)
-[![Silverstripe supported module](https://img.shields.io/badge/silverstripe-supported-0071C4.svg)](https://www.silverstripe.org/software/addons/silverstripe-commercially-supported-module-list/)
 
 Simple spam filter for Silverstripe using Akismet
 
