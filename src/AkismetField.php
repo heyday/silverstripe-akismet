@@ -67,13 +67,15 @@ class AkismetField extends FormField
             ->setForm($this->getForm());
     }
 
-    public function Field($properties = []))
+
+    public function Field($properties = [])
     {
         $checkbox = $this->confirmationField();
         if ($checkbox) {
             return $checkbox->Field($properties);
         }
     }
+
 
     public function FieldHolder($properties = [])
     {

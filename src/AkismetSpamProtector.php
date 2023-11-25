@@ -124,14 +124,14 @@ class AkismetSpamProtector implements SpamProtector
     {
         // Get API key and URL
         $key = $this->getApiKey();
+
         if (empty($key)) {
             user_error("AkismetSpamProtector is incorrectly configured. Please specify an API key.", E_USER_WARNING);
             return null;
         }
-        $url = Director::protocolAndHost();
 
         // Generate API object
-        return Injector::inst()->get(AkismetService::class, false, [$key, $url]);
+        return Injector::inst()->get(AkismetService::class, false, [$key]);
     }
 
     public function getFormField($name = null, $title = null, $value = null, $form = null, $rightTitle = null)
