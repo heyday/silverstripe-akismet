@@ -29,13 +29,13 @@ class AkismetService
     }
 
 
-    public function buildData($content, $author = null, $email = null, $url = null, $permalink = null)
+    public function buildData($content, $author = null, $email = null, $url = null, $permalink = null, $server = [])
     {
         $data = [
             'blog' => Director::protocolAndHost(),
-            'user_ip' => $_SERVER['REMOTE_ADDR'],
-            'user_agent' => $_SERVER['HTTP_USER_AGENT'],
-            'referrer' => (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '',
+            'user_ip' => (isset($server['REMOTE_ADDR'])) ? $server['REMOTE_ADDR'] : '',
+            'user_agent' => (isset($server['HTTP_USER_AGENT'])) ? $server['HTTP_USER_AGENT'] : '',
+            'referrer' => (isset($server['HTTP_REFERER'])) ? $server['HTTP_REFERER'] : '',
             'permalink' => $permalink,
             'comment_type' => 'comment',
             'comment_author' => $author,
@@ -48,25 +48,33 @@ class AkismetService
     }
 
 
-    public function isSpam($content, $author = null, $email = null, $url = null, $permalink = null)
+    public function isSpam($content, $author = null, $email = null, $url = null, $permalink = null, $server = null)
     {
-        $data = $this->buildData($content, $author, $email, $url, $permalink);
-        $response = $this->checkSpam($data);
+        if (is_null($server)) {
+            $server = $_SERVER;
+        }
+
+        $data = $this->buildData($content, $author, $email, $url, $permalink, $server);
+        $response = $this->checkSpam($data, $server);
 
         return (isset($response['spam']) && $response['spam']);
     }
 
 
-    public function submitSpam($content, $author = null, $email = null, $url = null, $permalink = null)
+    public function submitSpam($content, $author = null, $email = null, $url = null, $permalink = null, $server = null)
     {
+        if (is_null($server)) {
+            $server = $_SERVER;
+        }
+
         $data = $this->buildData($content, $author, $email, $url, $permalink);
         $this->post($this->endpoint . 'submit-spam', $data);
     }
 
 
-    public function checkSpam($data)
+    public function checkSpam($data, $state = [])
     {
-        $keys = array_intersect_key($_SERVER, array_fill_keys([
+        $keys = array_intersect_key($state, array_fill_keys([
             'HTTP_HOST', 'HTTP_USER_AGENT', 'HTTP_ACCEPT', 'HTTP_ACCEPT_LANGUAGE', 'HTTP_ACCEPT_ENCODING',
             'HTTP_ACCEPT_CHARSET', 'HTTP_KEEP_ALIVE', 'HTTP_REFERER', 'HTTP_CONNECTION', 'HTTP_FORWARDED',
             'HTTP_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_FORWARDED_FOR', 'HTTP_CLIENT_IP',
